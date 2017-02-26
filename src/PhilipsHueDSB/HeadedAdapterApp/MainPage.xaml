@@ -7,9 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid x:Name="backGroundGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
 				   x:Name="status" FontSize="24" TextWrapping="Wrap"
-				   Margin="20"/>
+				   Margin="20" Grid.Row="0"/>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+				   x:Name="buttonTest" FontSize="24" Content="Press Me"
+				   Margin="20" Grid.Row="1" Click="buttonTest_Click"/>
 	</Grid>
 </Page>

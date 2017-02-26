@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,6 +27,7 @@ namespace HeadedAdapterApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private App runningApp;
 
         public MainPage()
         {
@@ -38,13 +40,21 @@ namespace HeadedAdapterApp
             status.Text = "Starting up bridge...";
             try
             {
-                await ((App)App.Current).startupTask;
+                runningApp = (App)App.Current;
+                await runningApp.startupTask;
+                //await ((App)App.Current).startupTask;
                 status.Text = "Bridge Successfully Initialized";
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 status.Text = "Bridge failed to initialize:\n" + ex.Message;
             }
+
+        }
+
+        private void buttonTest_Click(object sender, RoutedEventArgs e)
+        {
+            status.Text = runningApp.dsbBridge.ToString();
         }
     }
 }
